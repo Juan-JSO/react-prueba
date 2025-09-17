@@ -18,14 +18,13 @@ function App() {
         if (!response.ok) {
           throw new Error('La respuesta de la red no fue correcta');
         }
-        return response.json(); // Asumimos que la respuesta es JSON
+        return response.json();
       })
       .then(data => {
-        // Extraemos el campo "output" del JSON de respuesta
-        if (data && data.output) {
-          setResponseMessage(data.output);
+        // La respuesta es un array, accedemos al primer elemento
+        if (Array.isArray(data) && data.length > 0 && data[0].output) {
+          setResponseMessage(data[0].output);
         } else {
-          // Si no, mostramos un mensaje de error o la respuesta completa para depuración
           setResponseMessage("Respuesta inesperada: " + JSON.stringify(data));
         }
       })
