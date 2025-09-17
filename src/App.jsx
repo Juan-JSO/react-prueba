@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const handleButtonClick = () => {
+    fetch('https://juan-jso.app.n8n.cloud/webhook-test/11d59ab3-f330-4c56-9983-3bc163516e95', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: 'Enviado desde Iniciar Prueba' })
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Prueba iniciada con éxito!');
+      } else {
+        alert('Hubo un error al iniciar la prueba.');
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('Hubo un error al iniciar la prueba.');
+    });
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <header className="App-header">
+        <h1>Prueba Firebase con n8n</h1>
+        <button onClick={handleButtonClick}>Iniciar Prueba</button>
+      </header>
+    </div>
   )
 }
 
