@@ -41,3 +41,9 @@ button {
 button:hover {
   background-color: #cc5200;
 }
+
+.response-message {
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: #a0a0a0;
+}
